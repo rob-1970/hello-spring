@@ -19,4 +19,9 @@ public class DemoProjectApplication {
 		return String.format("Hello %s!", name);
 	}
 
+	@GetMapping("/")
+	public String start(@RequestParam(value = "branch", defaultValue = "Main") String branch){
+		return String.format("This is the %s branch!", branch);
+	}
+
 }
