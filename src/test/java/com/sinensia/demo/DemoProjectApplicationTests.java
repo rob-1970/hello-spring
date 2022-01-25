@@ -10,4 +10,8 @@ class DemoProjectApplicationTests {
 	void contextLoads() {
 	}
 
+	/*@Test
+	void manualError() throws Exception {
+		throw new Exception("Error generado manualmente en carga de contexto ");
+	}*/
 }
