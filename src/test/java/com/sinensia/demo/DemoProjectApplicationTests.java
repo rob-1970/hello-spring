@@ -17,10 +17,10 @@ class DemoProjectApplicationTests {
 	void contextLoads() {
 	}
 
-	/*@Test
+	@Test
 	void manualError() throws Exception {
 		throw new Exception("Error generado manualmente en carga de contexto ");
-	}*/
+	}
 
 //	@Test /* REALIZAR una prueba en navegador sobre la url RAIZ para cualquier puerto */
 //	void rootTest (@Autowired WebTestClient webClient) { /* Autowired INDEXACIO o ANOTACIO MAGICA de SPRING */
