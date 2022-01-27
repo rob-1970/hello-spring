@@ -34,11 +34,13 @@ class DemoProjectApplicationTests {
 	@Test /* REALIZAR una prueba en navegador sobre la url RAIZ para cualquier puerto */
 	void startTest (@Autowired TestRestTemplate restTemplate) { /* Autowired INDEXACIO o ANOTACIO MAGICA de SPRING */
 		assertThat(restTemplate.getForObject("/", String.class)).isEqualTo("This is the Main branch!");
+		assertThat(restTemplate.getForObject("/?branch=La PERA", String.class)).isEqualTo("This is the La PERA branch!");
 	}
 
 	@Test /* REALIZAR una prueba en navegador sobre la url RAIZ para cualquier puerto */
 	void helloTest (@Autowired TestRestTemplate restTemplate) { /* Autowired INDEXACIO o ANOTACIO MAGICA de SPRING */
 		assertThat(restTemplate.getForObject("/hello", String.class)).isEqualTo("Hello World!");
+		assertThat(restTemplate.getForObject("/hello?name=Robert", String.class)).isEqualTo("Hello Robert!");
 	}
 
 }
