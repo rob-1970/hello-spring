@@ -46,7 +46,23 @@ class DemoProjectApplicationTests {
 	@Test
 	void canAddTest (@Autowired TestRestTemplate restTemplate) {
 		//assertThat(restTemplate.getForObject("/add?a=1&b=2", String.class)).isEqualTo("This add (1 + 2) is 3");
-		assertThat(restTemplate.getForObject("/add?a=1&b=2", String.class)).isEqualTo("3");
+		assertThat(restTemplate.getForObject("/add?a=1&b=2", String.class)).isEqualTo("3.0");
+	}
+
+	@Test
+	void canAddNullA (@Autowired TestRestTemplate restTemplate) {
+		assertThat(restTemplate.getForObject("/add?a=&b=2", String.class)).isEqualTo("2.0");
+	}
+
+	@Test
+	void canAddNullB (@Autowired TestRestTemplate restTemplate) {
+		assertThat(restTemplate.getForObject("/add?a=1&b=", String.class)).isEqualTo("1.0");
+	}
+
+	@Test
+	void canAddFraction (@Autowired TestRestTemplate restTemplate) {
+		assertThat(restTemplate.getForObject("/add?a=3.45&b=3.55", String.class)).isEqualTo("7.0");
 	}
 
 }
+

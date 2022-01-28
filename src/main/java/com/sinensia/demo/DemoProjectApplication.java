@@ -27,9 +27,9 @@ public class DemoProjectApplication {
 	@GetMapping("/add")
 	//public String canAdd(@RequestParam(value = "a", defaultValue = "0") String a,
 	//					 @RequestParam(value = "b", defaultValue = "0") String b){
-	public Integer canAdd(
-			@RequestParam(value="a") Integer a,
-			@RequestParam(value="b") Integer b){
+	public Double canAdd(
+			@RequestParam(value="a", defaultValue = "0.0") Double a,
+			@RequestParam(value="b", defaultValue = "0.0") Double b){
 		//int intFirst=Integer.parseInt(a);
 		//int intSecond=Integer.parseInt(b);
 		//int intResult=intFirst + intSecond;
