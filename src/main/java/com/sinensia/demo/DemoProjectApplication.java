@@ -24,4 +24,16 @@ public class DemoProjectApplication {
 		return String.format("Hello %s!", name);
 	}
 
+	@GetMapping("/add")
+	//public String canAdd(@RequestParam(value = "a", defaultValue = "0") String a,
+	//					 @RequestParam(value = "b", defaultValue = "0") String b){
+	public Integer canAdd(
+			@RequestParam(value="a") Integer a,
+			@RequestParam(value="b") Integer b){
+		//int intFirst=Integer.parseInt(a);
+		//int intSecond=Integer.parseInt(b);
+		//int intResult=intFirst + intSecond;
+		//return String.format("This add (", intFirst,"+" intSecond, intResult);
+		return (a+b);
+	}
 }

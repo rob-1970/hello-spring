@@ -37,10 +37,16 @@ class DemoProjectApplicationTests {
 		assertThat(restTemplate.getForObject("/?branch=La PERA", String.class)).isEqualTo("This is the La PERA branch!");
 	}
 
-	@Test /* REALIZAR una prueba en navegador sobre la url RAIZ para cualquier puerto */
-	void helloTest (@Autowired TestRestTemplate restTemplate) { /* Autowired INDEXACIO o ANOTACIO MAGICA de SPRING */
+	@Test
+	void helloTest (@Autowired TestRestTemplate restTemplate) {
 		assertThat(restTemplate.getForObject("/hello", String.class)).isEqualTo("Hello World!");
 		assertThat(restTemplate.getForObject("/hello?name=Robert", String.class)).isEqualTo("Hello Robert!");
+	}
+
+	@Test
+	void canAddTest (@Autowired TestRestTemplate restTemplate) {
+		//assertThat(restTemplate.getForObject("/add?a=1&b=2", String.class)).isEqualTo("This add (1 + 2) is 3");
+		assertThat(restTemplate.getForObject("/add?a=1&b=2", String.class)).isEqualTo("3");
 	}
 
 }
