@@ -36,4 +36,42 @@ public class DemoProjectApplication {
 		//return String.format("This add (", intFirst,"+" intSecond, intResult);
 		return (a+b);
 	}
+
+	@GetMapping("/subs")
+	public Double canSubs(
+			@RequestParam(value="a", defaultValue = "0.0") Double a,
+			@RequestParam(value="b", defaultValue = "0.0") Double b){
+		//int intFirst=Integer.parseInt(a);
+		//int intSecond=Integer.parseInt(b);
+		//int intResult=intFirst + intSecond;
+		//return String.format("This add (", intFirst,"+" intSecond, intResult);
+		return (a-b);
+	}
+
+	@GetMapping("/mult")
+	//public String canAdd(@RequestParam(value = "a", defaultValue = "0") String a,
+	//					 @RequestParam(value = "b", defaultValue = "0") String b){
+	public Double canMult(
+			@RequestParam(value="a", defaultValue = "0.0") Double a,
+			@RequestParam(value="b", defaultValue = "0.0") Double b){
+		//int intFirst=Integer.parseInt(a);
+		//int intSecond=Integer.parseInt(b);
+		//int intResult=intFirst + intSecond;
+		//return String.format("This add (", intFirst,"+" intSecond, intResult);
+		return (a*b);
+	}
+
+	@GetMapping("/div")
+	//public String canAdd(@RequestParam(value = "a", defaultValue = "0") String a,
+	//					 @RequestParam(value = "b", defaultValue = "0") String b){
+	public Double canDiv(
+			@RequestParam(value="a", defaultValue = "0.0") Double a,
+			@RequestParam(value="b", defaultValue = "0.0") Double b){
+		//int intFirst=Integer.parseInt(a);
+		//int intSecond=Integer.parseInt(b);
+		//int intResult=intFirst + intSecond;
+		//return String.format("This add (", intFirst,"+" intSecond, intResult);
+		return (a/b);
+	}
+
 }
