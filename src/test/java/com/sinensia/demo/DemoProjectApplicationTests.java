@@ -53,22 +53,22 @@ class DemoProjectApplicationTests {
 	@Test
 	void canAddTest (@Autowired TestRestTemplate restTemplate) {
 		//assertThat(restTemplate.getForObject("/add?a=1&b=2", String.class)).isEqualTo("This add (1 + 2) is 3");
-		assertThat(restTemplate.getForObject("/add?a=1&b=2", String.class)).isEqualTo("3.0");
+		assertThat(restTemplate.getForObject("/add?a=1&b=2", String.class)).isEqualTo("3");
 	}
 
 	@Test
 	void canAddNullA (@Autowired TestRestTemplate restTemplate) {
-		assertThat(restTemplate.getForObject("/add?a=&b=2", String.class)).isEqualTo("2.0");
+		assertThat(restTemplate.getForObject("/add?a=&b=2", String.class)).isEqualTo("2");
 	}
 
 	@Test
 	void canAddNullB (@Autowired TestRestTemplate restTemplate) {
-		assertThat(restTemplate.getForObject("/add?a=1&b=", String.class)).isEqualTo("1.0");
+		assertThat(restTemplate.getForObject("/add?a=1&b=", String.class)).isEqualTo("1");
 	}
 
 	@Test
 	void canAddFraction (@Autowired TestRestTemplate restTemplate) {
-		assertThat(restTemplate.getForObject("/add?a=3.45&b=3.55", String.class)).isEqualTo("7.0");
+		assertThat(restTemplate.getForObject("/add?a=3.45&b=3.55", String.class)).isEqualTo("7");
 	}
 
 	@ParameterizedTest
@@ -90,18 +90,18 @@ class DemoProjectApplicationTests {
 
 		@Test
 		void appCanAddReturnsInteger() {
-			assertThat(app.canAdd(1.0, 2.0)).isEqualTo(3);
+			assertThat(app.canAdd(1f, 2f)).isEqualTo(3);
 		}
 
 		@Test
 		void appCanAddReturnsFloat() {
-			assertThat(app.canAdd(1.5, 2.0)).isEqualTo(3.5f);
+			assertThat(app.canAdd(1.5f, 2.0f)).isEqualTo(3.5f);
 		}
 
 		@Test
 		void appCanAddNull() {
 			Exception thrown = assertThrows(NullPointerException.class,() -> {
-				Double ret = app.canAdd((Double) null, 2.0);
+				Float ret = (Float) app.canAdd( null, 2f);
 			});
 			assertTrue(thrown.toString().contains("NullPointerException"));
 			//thrown.getMessage().contains("");              alternativamente comprovar que contiene ""
@@ -111,7 +111,21 @@ class DemoProjectApplicationTests {
 	@Nested
 	class MultiplicationTest {
 
-
+		@DisplayName("multiplication")
+		@ParameterizedTest(name="{displayName} [{index}] {0} * {1} = {2}")
+		@CsvSource({
+				"1,   2,   2",
+				"1,   1,   1",
+				"1.0, 1.0, 1",
+				"1,  -2,  -2",
+				"1.5, 2,   3",
+				"'',  2,   0",
+				"1.5, 1.5, 2.25"
+		})
+		void canMultiply(String a, String b, String expected) {
+			assertThat(restTemplate.getForObject("/mult?a="+a+"&b="+b, String.class))
+					.isEqualTo(expected);
+		}
 
 	}
 }

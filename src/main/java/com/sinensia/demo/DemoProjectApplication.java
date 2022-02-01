@@ -6,10 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.processing.Generated;
+
 @SpringBootApplication
 @RestController
 public class DemoProjectApplication {
 
+	// Para que JACOCO no se pase por aqui y no nos de 0% en COVERTURA en el MAIN
+	@Generated(value="org.springframework.boot")
 	public static void main(String[] args) {
 		SpringApplication.run(DemoProjectApplication.class, args);
 	}
@@ -25,53 +29,55 @@ public class DemoProjectApplication {
 	}
 
 	@GetMapping("/add")
-	//public String canAdd(@RequestParam(value = "a", defaultValue = "0") String a,
-	//					 @RequestParam(value = "b", defaultValue = "0") String b){
-	public Double canAdd(
-			@RequestParam(value="a", defaultValue = "0.0") Double a,
-			@RequestParam(value="b", defaultValue = "0.0") Double b){
-		//int intFirst=Integer.parseInt(a);
-		//int intSecond=Integer.parseInt(b);
-		//int intResult=intFirst + intSecond;
-		//return String.format("This add (", intFirst,"+" intSecond, intResult);
-		return (a+b);
+	// public Double canAdd(
+	public Object canAdd(
+//			@RequestParam(value="a", defaultValue = "0.0") Double a,
+//			@RequestParam(value="b", defaultValue = "0.0") Double b){
+			@RequestParam(value="a", defaultValue = "0.0") Float a,
+			@RequestParam(value="b", defaultValue = "0.0") Float b){
+		//return (a+b);
+		Float sum = a+b;
+		Float decimals = sum - sum.intValue();
+		if(decimals!=0) {
+			return sum;
+		}
+		return Integer.valueOf(sum.intValue());
 	}
 
 	@GetMapping("/subs")
-	public Double canSubs(
-			@RequestParam(value="a", defaultValue = "0.0") Double a,
-			@RequestParam(value="b", defaultValue = "0.0") Double b){
-		//int intFirst=Integer.parseInt(a);
-		//int intSecond=Integer.parseInt(b);
-		//int intResult=intFirst + intSecond;
-		//return String.format("This add (", intFirst,"+" intSecond, intResult);
-		return (a-b);
+	public Object canSubs(
+			@RequestParam(value="a", defaultValue = "0.0") Float a,
+			@RequestParam(value="b", defaultValue = "0.0") Float b){
+		Float substract = a-b;
+		Float decimals = substract - substract.intValue();
+		if(decimals!=0) {
+			return substract;
+		}
+		return Integer.valueOf(substract.intValue());
 	}
 
 	@GetMapping("/mult")
-	//public String canAdd(@RequestParam(value = "a", defaultValue = "0") String a,
-	//					 @RequestParam(value = "b", defaultValue = "0") String b){
-	public Double canMult(
-			@RequestParam(value="a", defaultValue = "0.0") Double a,
-			@RequestParam(value="b", defaultValue = "0.0") Double b){
-		//int intFirst=Integer.parseInt(a);
-		//int intSecond=Integer.parseInt(b);
-		//int intResult=intFirst + intSecond;
-		//return String.format("This add (", intFirst,"+" intSecond, intResult);
-		return (a*b);
+	public Object canMult(
+			@RequestParam(value="a", defaultValue = "0.0") Float a,
+			@RequestParam(value="b", defaultValue = "0.0") Float b){
+		Float mult = a*b;
+		Float decimals = mult - mult.intValue();
+		if(decimals!=0) {
+			return mult;
+		}
+		return Integer.valueOf(mult.intValue());
 	}
 
 	@GetMapping("/div")
-	//public String canAdd(@RequestParam(value = "a", defaultValue = "0") String a,
-	//					 @RequestParam(value = "b", defaultValue = "0") String b){
-	public Double canDiv(
-			@RequestParam(value="a", defaultValue = "0.0") Double a,
-			@RequestParam(value="b", defaultValue = "0.0") Double b){
-		//int intFirst=Integer.parseInt(a);
-		//int intSecond=Integer.parseInt(b);
-		//int intResult=intFirst + intSecond;
-		//return String.format("This add (", intFirst,"+" intSecond, intResult);
-		return (a/b);
+	public Object canDiv(
+			@RequestParam(value="a", defaultValue = "0.0") Float a,
+			@RequestParam(value="b", defaultValue = "0.0") Float b){
+		Float divide = a/b;
+		Float decimals = divide - divide.intValue();
+		if(decimals!=0) {
+			return divide;
+		}
+		return Integer.valueOf(divide.intValue());
 	}
 
 }
