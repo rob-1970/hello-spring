@@ -2,6 +2,19 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Test') {
+            steps {
+                sh './gradlew clean test'
+            }
+            post {
+                always {
+                    junit 'build/test-results/test/*.xml'
+                    jacoco execPattern: 'build/jacoco/*.exec'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
@@ -10,19 +23,28 @@ pipeline {
                 //git branch: 'main', url: 'https://github.com/rob-1970/hello-spring.git'
 
                 // Run Gradle Wrapper on a Unix agent.
-                sh "./gradlew clean test assemble"
+                sh "./gradlew assemble"
             }
 
             post {
                 // If Gradle was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
-                    junit 'build/test-results/test/*.xml'
                     archiveArtifacts 'build/libs/*.jar'      // ==>> CONFIGURACIÓ ORIGINAL BÀSICA
                     //archiveArtifacts artifacts: 'build/libs/*.jar', followSymlinks: false
-                    jacoco execPattern: 'build/jacoco/*.exec'
-
                 }
+            }
+        }
+
+        stage('Deploy') {
+            steps{
+                echo 'Deploying . . . . . . . . .'
+            }
+        }
+
+        stage('InfoTEAM')  {
+            steps{
+                echo 'Deploying . . . . . . . . .'
             }
         }
     }
