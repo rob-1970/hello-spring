@@ -44,7 +44,7 @@ pipeline {
 
         stage('InfoTEAM')  {
             steps{
-                echo 'Deploying . . . . . . . . .'
+                echo 'Info TEAM about SUCCESS . . . . . . . . .'
             }
         }
     }

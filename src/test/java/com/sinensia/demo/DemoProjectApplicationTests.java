@@ -19,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @AutoConfigureWebTestClient
 class DemoProjectApplicationTests {
 
-	@Autowired TestRestTemplate restTemplate;
+	// transient ==>> Afegit per a passar el test de PMD
+	@Autowired transient TestRestTemplate restTemplate;
 
 	@Test /* "Error en carga de contexto " */
 	void contextLoads() {
@@ -86,8 +87,8 @@ class DemoProjectApplicationTests {
 	@DisplayName(value="Application tests")
 	class AppTests {
 
-		@Autowired
-		private DemoProjectApplication app;
+		// transient ==>> Afegit per a passar el test de PMD
+		@Autowired transient private DemoProjectApplication app;
 
 		@Test
 		void appCanAddReturnsInteger() {
