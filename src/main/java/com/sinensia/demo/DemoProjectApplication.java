@@ -71,6 +71,7 @@ public class DemoProjectApplication {
 		return Integer.valueOf(mult.intValue());
 	}
 
+	// Aquest es diferent dels altres tres
 	@GetMapping("/div")
 	public BigDecimal canDiv(
 			@RequestParam(value="a", defaultValue = "0") BigDecimal a,
