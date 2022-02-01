@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.processing.Generated;
+import java.math.BigDecimal;
+
+import static java.math.RoundingMode.HALF_DOWN;
 
 @SpringBootApplication
 @RestController
@@ -33,8 +36,8 @@ public class DemoProjectApplication {
 	public Object canAdd(
 //			@RequestParam(value="a", defaultValue = "0.0") Double a,
 //			@RequestParam(value="b", defaultValue = "0.0") Double b){
-			@RequestParam(value="a", defaultValue = "0.0") Float a,
-			@RequestParam(value="b", defaultValue = "0.0") Float b){
+			@RequestParam(value="a", defaultValue = "0") Float a,
+			@RequestParam(value="b", defaultValue = "0") Float b){
 		//return (a+b);
 		Float sum = a+b;
 		Float decimals = sum - sum.intValue();
@@ -46,8 +49,8 @@ public class DemoProjectApplication {
 
 	@GetMapping("/subs")
 	public Object canSubs(
-			@RequestParam(value="a", defaultValue = "0.0") Float a,
-			@RequestParam(value="b", defaultValue = "0.0") Float b){
+			@RequestParam(value="a", defaultValue = "0") Float a,
+			@RequestParam(value="b", defaultValue = "0") Float b){
 		Float substract = a-b;
 		Float decimals = substract - substract.intValue();
 		if(decimals!=0) {
@@ -58,8 +61,8 @@ public class DemoProjectApplication {
 
 	@GetMapping("/mult")
 	public Object canMult(
-			@RequestParam(value="a", defaultValue = "0.0") Float a,
-			@RequestParam(value="b", defaultValue = "0.0") Float b){
+			@RequestParam(value="a", defaultValue = "0") Float a,
+			@RequestParam(value="b", defaultValue = "0") Float b){
 		Float mult = a*b;
 		Float decimals = mult - mult.intValue();
 		if(decimals!=0) {
@@ -69,15 +72,10 @@ public class DemoProjectApplication {
 	}
 
 	@GetMapping("/div")
-	public Object canDiv(
-			@RequestParam(value="a", defaultValue = "0.0") Float a,
-			@RequestParam(value="b", defaultValue = "0.0") Float b){
-		Float divide = a/b;
-		Float decimals = divide - divide.intValue();
-		if(decimals!=0) {
-			return divide;
-		}
-		return Integer.valueOf(divide.intValue());
+	public BigDecimal canDiv(
+			@RequestParam(value="a", defaultValue = "0") BigDecimal a,
+			@RequestParam(value="b", defaultValue = "0") BigDecimal b){
+		return a.divide(b, 2, HALF_DOWN);
 	}
 
 }
