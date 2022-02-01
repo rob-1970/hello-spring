@@ -112,13 +112,13 @@ class DemoProjectApplicationTests {
 	@DisplayName("multiple substractions")
 	@ParameterizedTest(name="{displayName} [{index}] {0} + {1} = {2}")
 	@CsvSource({
-			"1,   2,   3",
-			"1,   1,   2",
-			"1.0, 1.0, 2",
-			"1,  -2,  -1",
-			"1.5, 2,   3.5",
-			"'',  2,   2",
-			"1.5, 1.5, 3"
+			"1,   2,   -1",
+			"1,   1,   0",
+			"1.0, 1.0, 0",
+			"1,  -2,   3",
+			"1.5, 2,   -0.5",
+			"'',  2,   -2",
+			"1.5, 1.5, 0"
 	})
 	void canSubsCsvParameterized(String a, String b, String expected) {
 		assertThat(restTemplate.getForObject("/subs?a="+a+"&b="+b, String.class))
