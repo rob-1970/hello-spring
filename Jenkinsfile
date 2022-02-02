@@ -5,7 +5,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh './gradlew clean test check'
+                sh './gradlew clean test check pitest'
             }
             post {
                 always {
@@ -15,7 +15,7 @@ pipeline {
                         // Añadimos la lista de herramientas de DIGESTION que tratara Jenkins
                         tools: [
                             // Habilitar herramienta PMD que vamos a tratar desde Jenkins
-                            pmdParser(pattern: 'build/reports/pmd/*.xml')
+                            pmdParser(pattern: 'build/reports/pmd/*.xml'),  // Posar COMA cuan n'hi ha mes d'un
                             // Habilitar que pueda utilizar los INFORMES de PITEST desde Jenkins
                             pit(pattern: 'build/reports/pitest/*.xml')
                             // Habilitar que pueda utilizar los INFORMES de FindBugs desde Jenkins
