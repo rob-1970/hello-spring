@@ -3,7 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'jacoco'
-	id 'pmd'			// instalamos el plugin en Gradle pero lo trataremos con un gnerico en Jenkins
+	id 'pmd'			// Instalamos el plugin en Gradle pero lo trataremos con un generico en Jenkins
 }
 
 group = 'com.sinensia'
