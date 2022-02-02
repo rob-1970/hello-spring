@@ -3,7 +3,9 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'jacoco'
-	id 'pmd'			// Instalamos el plugin en Gradle pero lo trataremos con un generico en Jenkins
+	id 'pmd'			// Instalamos el plugin PMD en Gradle pero lo trataremos con "recordIssues" en Jenkins
+						// INTEGRAR "FindBugs" como herramienta para TRATAR errores o warnings para generar INFORMES
+	id 'info.solidsoft.pitest' version '1.7.0'	// INTEGRAR "PIT" para realizar mutaciones en nuestro codigo de los TEST (pitest.org)
 }
 
 group = 'com.sinensia'
@@ -34,4 +36,11 @@ jacocoTestReport{
 pmd {
 	consoleOutput = true
 	ignoreFailures = true
+}
+
+ext['junit-jupiter.version'] = '5.5.2'	// Para que pitest encuentre nuestras pruebas unitarias
+
+pitest {
+	junit5PluginVersion='0.12'
+	outputFormats = ['XML','HTML']
 }
