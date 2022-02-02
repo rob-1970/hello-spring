@@ -79,4 +79,10 @@ public class DemoProjectApplication {
 		return a.divide(b, 2, HALF_DOWN);
 	}
 
+	@GetMapping("/sqrt")
+	public double sqrt(Float a) {
+		// devolver la raiz cuadrada
+		return Math.sqrt(a);
+	}
+
 }

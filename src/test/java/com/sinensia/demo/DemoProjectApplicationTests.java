@@ -157,7 +157,7 @@ class DemoProjectApplicationTests {
 				" 1.0, 1.0, 1.00",
 				"10,   3,   3.33"
 		})
-		void canAddCsvParameterizedFloat(String a, String b, String expected) {
+		void canDivideCsvParameterizedFloat(String a, String b, String expected) {
 			assertThat(restTemplate.getForObject("/div?a=" + a + "&b=" + b, Float.class))
 					.isEqualTo(Float.parseFloat(expected));
 		}
@@ -170,9 +170,28 @@ class DemoProjectApplicationTests {
 		}
 	}
 
+	@Nested
+	class SqrtTest {
+		@DisplayName("multiple SQRT")
+		@ParameterizedTest(name = "{displayName} [{index}] V--{0} = {1}")
+		@CsvSource({
+				" 4,  2",
+				"16,  4",
+				" 1,  1",
+				"10,  3.1622777"
+		})
+		void canSqrtCsvParameterizedFloat(String a, String expected) {
+			assertThat(restTemplate.getForObject("/sqrt?a=" + a, Float.class))
+					.isEqualTo(Float.parseFloat(expected));
+		}
 
+		@Test
+		void sqrtByZero() {
+			Exception thrown = assertThrows(RestClientException.class, () -> {
+				restTemplate.getForObject("/sqrt?a=0", Float.class);
+			});
 
-
-
+		}
+	}
 }
 
