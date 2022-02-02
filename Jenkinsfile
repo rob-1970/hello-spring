@@ -16,6 +16,8 @@ pipeline {
                         tools: [
                             // Habilitar herramienta PMD que vamos a tratar desde Jenkins
                             pmdParser(pattern: 'build/reports/pmd/*.xml')
+                            // Habilitar que pueda utilizar los INFORMES de PITEST desde Jenkins
+                            pit(pattern: 'build/reports/pitest/*.xml')
                             // Habilitar que pueda utilizar los INFORMES de FindBugs desde Jenkins
                         ]
                     )

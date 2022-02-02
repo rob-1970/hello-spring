@@ -43,4 +43,5 @@ ext['junit-jupiter.version'] = '5.5.2'	// Para que pitest encuentre nuestras pru
 pitest {
 	junit5PluginVersion='0.12'
 	outputFormats = ['XML','HTML']
+	timestampedReports = false			// Para que NO SE cree un subdirectorio para cada ejecucion con el tiempo
 }
