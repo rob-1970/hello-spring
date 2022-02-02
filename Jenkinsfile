@@ -11,6 +11,13 @@ pipeline {
                 always {
                     junit 'build/test-results/test/*.xml'
                     jacoco execPattern: 'build/jacoco/*.exec'
+                    recordIssues(
+                        // Añadimos la lista de herramientas de DIGESTION que tratara Jenkins
+                        tools: [
+                            // Habilitar herramienta PMD que vamos a tratar desde Jenkins
+                            pmdParser(pattern: 'build/reports/pmd/*.xml')
+                        ]
+                    )
                 }
             }
         }
