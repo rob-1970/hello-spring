@@ -185,13 +185,13 @@ class DemoProjectApplicationTests {
 					.isEqualTo(Float.parseFloat(expected));
 		}
 
-		@Test
+/*		@Test
 		void sqrtByZero() {
 			Exception thrown = assertThrows(RestClientException.class, () -> {
 				restTemplate.getForObject("/sqrt?a=0", Float.class);
 			});
 
-		}
+		}*/
 	}
 }
 
