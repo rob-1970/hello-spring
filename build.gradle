@@ -6,6 +6,7 @@ plugins {
 	id 'pmd'			// Instalamos el plugin PMD en Gradle pero lo trataremos con "recordIssues" en Jenkins
 						// INTEGRAR "FindBugs" como herramienta para TRATAR errores o warnings para generar INFORMES
 	id 'info.solidsoft.pitest' version '1.7.0'	// INTEGRAR "PIT" para realizar mutaciones en nuestro codigo de los TEST (pitest.org)
+	id "org.sonarqube" version "3.3"	// Per a poder utilitzar SONAR QUBE
 }
 
 group = 'com.sinensia'
